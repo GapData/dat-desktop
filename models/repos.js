@@ -267,7 +267,7 @@ function createModel () {
 
     function closeAll () {
       multidat.list().forEach(function (dat) {
-        dat.close(noop)
+        if (!(dat instanceof Error)) dat.close(noop)
       })
     }
 
@@ -277,6 +277,8 @@ function createModel () {
     }
 
     function initDat (dat) {
+      if (dat instanceof Error) return
+
       const key = encoding.toStr(dat.key)
       dbPaused.read((err, paused) => {
         if (err) throw err
