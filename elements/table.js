@@ -137,25 +137,28 @@ function tableElement (dats, send) {
 }
 
 function row (dat, send) {
-  if (dat instanceof Error) return html`
-    <tr>
-      <td class="cell-1">
-        <div class="w2 center">
-          OOPS
-        </div>
-      </td>
-      <td class="cell-2">
-      </td>
-      <td class="cell-3">
-      </td>
-      <td class="tr cell-4 size">
-      </td>
-      <td class="cell-5">
-      </td>
-      <td class="cell-6">
-      </td>
-    </tr>
-  `
+  if (dat instanceof Error) {
+    return html`
+      <tr>
+        <td class="cell-1">
+          <div class="w2 center">
+            OOPS
+          </div>
+        </td>
+        <td class="cell-2">
+        </td>
+        <td class="cell-3">
+        </td>
+        <td class="tr cell-4 size">
+        </td>
+        <td class="cell-5">
+        </td>
+        <td class="cell-6">
+        </td>
+      </tr>
+    `
+  }
+
   const stats = dat.stats && dat.stats.get()
   var peers = (dat.network)
     ? dat.network.connected
